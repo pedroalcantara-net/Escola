@@ -10,5 +10,6 @@ namespace Escola.Domain.Interface.Repository
         Task<Turma> GetByIdAsync(int id);
         Task<Turma> UpdateAsync(Turma aluno);
         Task<bool> NomeExistsAsync(string turma);
+        Task<IEnumerable<Turma>> GetByAlunoIdAsync(int alunoId);
     }
 }

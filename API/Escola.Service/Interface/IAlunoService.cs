@@ -9,5 +9,6 @@ namespace Escola.Application.Interface
         Task<AlunoResponse> AddAsync(AlunoRequest aluno);
         Task<AlunoResponse> UpdateAsync(AlunoRequest aluno);
         Task DeleteByIdAsync(int id);
+        Task<IEnumerable<AlunoResponse>> GetByTurmaIdAsync(int turmaId);
     }
 }

@@ -1,6 +1,6 @@
 ﻿
 using Escola.API.Contract;
-using Escola.Domain.Erros;
+using Escola.Domain.Error;
 using Escola.Domain.Exception;
 using System.Net;
 using System.Text.Json;

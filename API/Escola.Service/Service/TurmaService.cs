@@ -1,7 +1,7 @@
 ﻿using Escola.Application.Contract.Turma;
 using Escola.Application.Interface;
 using Escola.Domain.Entity;
-using Escola.Domain.Erros;
+using Escola.Domain.Error;
 using Escola.Domain.Exception;
 using Escola.Domain.Interface.Repository;
 
@@ -18,7 +18,7 @@ namespace Escola.Application.Service
 
             if (turmaRequest.Ano < DateTime.Now.Year) _erros.Add(DomainErrors.Turma.InvalidAno);
 
-            if (_erros.Count == 0) throw new BadRequestException(_erros);
+            if (_erros.Count != 0) throw new BadRequestException(_erros);
 
             var turma = new Turma()
             {
@@ -62,6 +62,16 @@ namespace Escola.Application.Service
             await _turmaRepository.UpdateAsync(turma);
 
             return new TurmaResponse(turma);
+        }
+
+
+        public async Task<IEnumerable<TurmaResponse>> GetByAlunoIdAsync(int alunoId)
+        {
+            var turma = await _turmaRepository.GetByAlunoIdAsync(alunoId);
+
+            if (!turma.Any()) throw new NotFoundException(DomainErrors.Turma.NoneFound);
+
+            return turma.Select(x => new TurmaResponse(x));
         }
     }
 }

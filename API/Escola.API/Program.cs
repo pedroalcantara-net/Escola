@@ -12,7 +12,7 @@ builder.Services.AddSwaggerGen();
 
 builder.Services
     .AddTransient<ExceptionHandlingMiddleware>()
-    .AddPersistence()
+    .AddPersistence(builder.Configuration)
     .AddService();
 
 var app = builder.Build();

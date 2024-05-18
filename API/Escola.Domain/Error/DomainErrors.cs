@@ -1,4 +1,4 @@
-﻿namespace Escola.Domain.Erros
+﻿namespace Escola.Domain.Error
 {
     public static class DomainErrors
     {
@@ -46,6 +46,19 @@
             public static Erro InvalidAno => new(
                 "Turma.InvalidAno",
                 "O ano informado é inferior à data atual."
+                );
+        }
+
+        public static class AlunoTurma
+        {
+            public static Erro NotFound => new(
+                "Turma.NotFound",
+                "O relacionamento de Aluno e Turma com os identificadores informados não pôde ser encontrado."
+                );
+
+            public static Erro AlreadyExists => new(
+                "Turma.NotFound",
+                "Já existe um relacionamento entre o Aluno e a Turma com os identificadores informados."
                 );
         }
     }

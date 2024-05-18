@@ -1,4 +1,4 @@
-﻿namespace Escola.Domain.Erros
+﻿namespace Escola.Domain.Error
 {
     public class Erro
     {

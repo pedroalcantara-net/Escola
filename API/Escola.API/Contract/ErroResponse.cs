@@ -1,4 +1,4 @@
-﻿using Escola.Domain.Erros;
+﻿using Escola.Domain.Error;
 
 namespace Escola.API.Contract
 {

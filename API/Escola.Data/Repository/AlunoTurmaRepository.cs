@@ -1,30 +1,60 @@
-﻿using Escola.Domain.Entity;
+﻿using Dapper;
+using Escola.Domain.Entity;
 using Escola.Domain.Interface.Repository;
+using Escola.Persistence.Infrastructure;
 using Microsoft.Data.SqlClient;
 
 namespace Escola.Persistence.Repository
 {
-    public class AlunoTurmaRepository : IAlunoTurmaRepository
+    public class AlunoTurmaRepository(ConnectionString connectionString) : IAlunoTurmaRepository
     {
-        private readonly SqlConnection _connection;
-        public AlunoTurma Add(AlunoTurma Turma)
+        private readonly ConnectionString _connectionString = connectionString;
+
+        public async Task<AlunoTurma> AddAsync(AlunoTurma alunoTurma)
         {
-            throw new NotImplementedException();
+            using var connection = new SqlConnection(_connectionString);
+
+            await connection.OpenAsync();
+
+            await connection.ExecuteAsync(@"INSERT INTO [Aluno_Turma] ([Aluno_Id],[Turma_Id]) VALUES (@ALUNO_ID ,@TURMA_ID)", new
+            {
+                @ALUNO_ID = alunoTurma.AlunoId,
+                @TURMA_ID = alunoTurma.TurmaId
+            });
+
+            return await connection.QueryFirstOrDefaultAsync("SELECT TOP(1) * FROM [Aluno_Turma] WHERE [Aluno_Id] = @ALUNO_ID AND [Turma_Id] = @TURMA_ID", new
+            {
+                @ALUNO_ID = alunoTurma.AlunoId,
+                @TURMA_ID = alunoTurma.TurmaId
+            }) ?? alunoTurma;
         }
 
-        public void Delete(int turmaId, int alunoId)
+        public async Task<bool> AlunoTurmaExistsAsync(int alunoId, int turmaId)
         {
-            throw new NotImplementedException();
+            using var connection = new SqlConnection(_connectionString);
+
+            await connection.OpenAsync();
+
+            var alunoTurma = await connection.QueryFirstOrDefaultAsync("SELECT TOP(1) * FROM [Aluno_Turma] WHERE [Aluno_Id] = @ALUNO_ID AND [Turma_Id] = @TURMA_ID", new
+            {
+                @ALUNO_ID = alunoId,
+                @TURMA_ID = turmaId
+            });
+
+            return alunoTurma is not null;
         }
 
-        public IEnumerable<AlunoTurma> GetByAlunoId(int alunoId)
+        public async Task DeleteAsync(int alunoId, int turmaId)
         {
-            throw new NotImplementedException();
-        }
+            using var connection = new SqlConnection(_connectionString);
 
-        public IEnumerable<AlunoTurma> GetByTurmaId(int turmaId)
-        {
-            throw new NotImplementedException();
+            await connection.OpenAsync();
+
+            await connection.ExecuteAsync("DELETE [Aluno_Turma] WHERE [Aluno_Id] = @ALUNO_ID AND [Turma_Id] = @TURMA_ID", new
+            {
+                @ALUNO_ID = alunoId,
+                @TURMA_ID = turmaId
+            });
         }
     }
 }

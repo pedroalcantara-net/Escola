@@ -4,9 +4,8 @@ namespace Escola.Domain.Interface.Repository
 {
     public interface IAlunoTurmaRepository
     {
-        IEnumerable<AlunoTurma> GetByTurmaId(int turmaId);
-        IEnumerable<AlunoTurma> GetByAlunoId(int alunoId);
-        AlunoTurma Add(AlunoTurma Turma);
-        void Delete(int turmaId, int alunoId);
+        Task<bool> AlunoTurmaExistsAsync(int alunoId, int turmaId);
+        Task<AlunoTurma> AddAsync(AlunoTurma Turma);
+        Task DeleteAsync(int alunoId, int turmaId);
     }
 }
