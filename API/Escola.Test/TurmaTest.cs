@@ -11,11 +11,12 @@ namespace Escola.Test
     public class TurmaTest
     {
         private readonly Mock<ITurmaRepository> _turmaRepository = new();
+        private readonly Mock<IAlunoTurmaRepository> _alunoTurmaRepository = new();
         private readonly TurmaService _turmaService;
 
         public TurmaTest()
         {
-            _turmaService = new TurmaService(_turmaRepository.Object);
+            _turmaService = new TurmaService(_turmaRepository.Object, _alunoTurmaRepository.Object);
         }
 
         [Fact]
@@ -131,7 +132,7 @@ namespace Escola.Test
         public async Task UpdateAsync_ShouldThrowNotFoundException_WhenTurmaNotFound()
         {
             var turmaRequest = new TurmaRequest { Id = 1, Nome = "Updated Nome", CursoId = 1, Ano = DateTime.Now.Year };
-            _turmaRepository.Setup(x => x.GetByIdAsync(turmaRequest.Id)).ReturnsAsync((Turma)null);
+            _turmaRepository.Setup(x => x.GetByIdAsync(turmaRequest.Id.Value)).ReturnsAsync((Turma)null);
 
             var exception = await Assert.ThrowsAsync<NotFoundException>(() => _turmaService.UpdateAsync(turmaRequest));
             Assert.Contains(DomainErrors.Turma.NotFound.Codigo, exception.Erros.Select(x => x.Codigo));
@@ -141,14 +142,14 @@ namespace Escola.Test
         public async Task UpdateAsync_ShouldUpdateTurma_WhenRequestIsValid()
         {
             var turmaRequest = new TurmaRequest { Id = 1, Nome = "Updated Nome", CursoId = 1, Ano = DateTime.Now.Year };
-            var turma = new Turma { Id = turmaRequest.Id, Nome = "Updated Nome", CursoId = 1, Ano = DateTime.Now.Year };
-            _turmaRepository.Setup(x => x.GetByIdAsync(turmaRequest.Id)).ReturnsAsync(turma);
+            var turma = new Turma { Id = turmaRequest.Id.Value, Nome = "Updated Nome", CursoId = 1, Ano = DateTime.Now.Year };
+            _turmaRepository.Setup(x => x.GetByIdAsync(turmaRequest.Id.Value)).ReturnsAsync(turma);
             _turmaRepository.Setup(x => x.UpdateAsync(turma)).ReturnsAsync(turma);
 
             var result = await _turmaService.UpdateAsync(turmaRequest);
 
             Assert.NotNull(result);
-            Assert.Equal(turmaRequest.Id, result.Id);
+            Assert.Equal(turmaRequest.Id.Value, result.Id);
             Assert.Equal(turmaRequest.Nome, result.Nome);
             _turmaRepository.Verify(x => x.UpdateAsync(turma), Times.Once);
         }

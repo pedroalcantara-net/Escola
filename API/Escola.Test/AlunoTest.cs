@@ -14,11 +14,12 @@ namespace Escola.Test
     {
 
         private readonly Mock<IAlunoRepository> _alunoRepository = new();
+        private readonly Mock<IAlunoTurmaRepository> _alunoTurmaRepository = new();
         private IAlunoService _alunoService;
 
         public AlunoTest()
         {
-            _alunoService = new AlunoService(_alunoRepository.Object);
+            _alunoService = new AlunoService(_alunoRepository.Object, _alunoTurmaRepository.Object);
         }
 
         [Fact]
@@ -140,7 +141,7 @@ namespace Escola.Test
         public async Task UpdateAsync_ShouldThrowNotFoundException_WhenAlunoNotFound()
         {
             var alunoRequest = SetupAlunoRequest();
-            _alunoRepository.Setup(x => x.GetByIdAsync(alunoRequest.Id)).ReturnsAsync((Aluno)null);
+            _alunoRepository.Setup(x => x.GetByIdAsync(alunoRequest.Id.Value)).ReturnsAsync((Aluno)null);
 
 
             var exception = await Assert.ThrowsAsync<NotFoundException>(() => _alunoService.UpdateAsync(alunoRequest));
@@ -154,7 +155,7 @@ namespace Escola.Test
             var alunoRequest = SetupAlunoRequest();
             alunoRequest.SenhaConfirmacao = "OutraSenhaQualquer";
 
-            _alunoRepository.Setup(x => x.GetByIdAsync(alunoRequest.Id)).ReturnsAsync(aluno);
+            _alunoRepository.Setup(x => x.GetByIdAsync(alunoRequest.Id.Value)).ReturnsAsync(aluno);
 
 
             var exception = await Assert.ThrowsAsync<BadRequestException>(() => _alunoService.UpdateAsync(alunoRequest));
@@ -167,7 +168,7 @@ namespace Escola.Test
             var aluno = SetupAluno();
             var alunoRequest = SetupAlunoRequest();
             alunoRequest.SenhaConfirmacao = alunoRequest.Senha;
-            _alunoRepository.Setup(x => x.GetByIdAsync(alunoRequest.Id)).ReturnsAsync(aluno);
+            _alunoRepository.Setup(x => x.GetByIdAsync(alunoRequest.Id.Value)).ReturnsAsync(aluno);
             _alunoRepository.Setup(x => x.UpdateAsync(aluno)).ReturnsAsync(aluno);
 
 
