@@ -16,18 +16,18 @@ namespace Escola.Api.Controllers
 
         [HttpPost]
         [ProducesResponseType(typeof(AlunoTurmaResponse), (int)HttpStatusCode.Created)]
-        [ProducesResponseType(typeof(ErroResponse), (int)HttpStatusCode.BadRequest)]
-        [ProducesResponseType(typeof(ErroResponse), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ErroListResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErroListResponse), (int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<AlunoTurmaResponse>> Add([FromBody] AlunoTurmaRequest alunoTurma)
         {
             var response = await _alunoTurmaService.AddAsync(alunoTurma);
             return CreatedAtAction(nameof(Add), response);
         }
 
-        [HttpDelete]
+        [HttpDelete(ApiRoutes.AlunoTurma.Ids)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
-        [ProducesResponseType(typeof(ErroResponse), (int)HttpStatusCode.NotFound)]
-        public async Task<IActionResult> Delete([FromQuery] int alunoId, [FromQuery] int turmaId)
+        [ProducesResponseType(typeof(ErroListResponse), (int)HttpStatusCode.NotFound)]
+        public async Task<IActionResult> Delete([FromRoute] int alunoId, [FromRoute] int turmaId)
         {
             await _alunoTurmaService.DeleteAsync(alunoId, turmaId);
             return NoContent();

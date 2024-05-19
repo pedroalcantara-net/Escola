@@ -71,7 +71,8 @@ namespace Escola.Persistence.Repository
             {
                 @CURSO_ID = turma.CursoId,
                 @TURMA = turma.Nome,
-                @ANO = turma.Ano
+                @ANO = turma.Ano,
+                @ID = turma.Id
             });
 
             return turma;

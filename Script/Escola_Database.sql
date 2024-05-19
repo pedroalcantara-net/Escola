@@ -1,0 +1,32 @@
+CREATE TABLE [dbo].[Aluno](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[Nome] [varchar](255) NULL,
+	[Usuario] [varchar](255) NULL,
+	[Senha] [varchar](255) NULL,
+ CONSTRAINT [PK_Aluno] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[Curso](
+	[Id] [int] NOT NULL,
+	[Nome] [varchar](45) NOT NULL,
+ CONSTRAINT [PK_Curso] PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+CREATE TABLE [dbo].[Aluno_Turma](
+	[Aluno_Id] [int] NOT NULL,
+	[Turma_Id] [int] NOT NULL
+) ON [PRIMARY]
+
+ALTER TABLE [dbo].[Aluno_Turma]  WITH CHECK ADD  CONSTRAINT [FK_Aluno_Turma_Aluno] FOREIGN KEY([Aluno_Id]) REFERENCES [dbo].[Aluno] ([Id])
+
+ALTER TABLE [dbo].[Aluno_Turma] CHECK CONSTRAINT [FK_Aluno_Turma_Aluno]
+
+ALTER TABLE [dbo].[Aluno_Turma]  WITH CHECK ADD  CONSTRAINT [FK_Aluno_Turma_Turma] FOREIGN KEY([Turma_Id]) REFERENCES [dbo].[Turma] ([Id])
+
+ALTER TABLE [dbo].[Aluno_Turma] CHECK CONSTRAINT [FK_Aluno_Turma_Turma]

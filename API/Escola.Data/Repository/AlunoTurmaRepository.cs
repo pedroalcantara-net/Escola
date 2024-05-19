@@ -22,7 +22,7 @@ namespace Escola.Persistence.Repository
                 @TURMA_ID = alunoTurma.TurmaId
             });
 
-            return await connection.QueryFirstOrDefaultAsync("SELECT TOP(1) * FROM [Aluno_Turma] WHERE [Aluno_Id] = @ALUNO_ID AND [Turma_Id] = @TURMA_ID", new
+            return await connection.QueryFirstOrDefaultAsync<AlunoTurma>("SELECT TOP(1) * FROM [Aluno_Turma] WHERE [Aluno_Id] = @ALUNO_ID AND [Turma_Id] = @TURMA_ID", new
             {
                 @ALUNO_ID = alunoTurma.AlunoId,
                 @TURMA_ID = alunoTurma.TurmaId
@@ -42,6 +42,34 @@ namespace Escola.Persistence.Repository
             });
 
             return alunoTurma is not null;
+        }
+
+        public async Task<IEnumerable<AlunoTurma>> GetByAlunoId(int alunoId)
+        {
+            using var connection = new SqlConnection(_connectionString);
+
+            await connection.OpenAsync();
+
+            var alunoTurma = await connection.QueryAsync<AlunoTurma>("SELECT TOP(1) * FROM [Aluno_Turma] WHERE [Aluno_Id] = @ALUNO_ID", new
+            {
+                @ALUNO_ID = alunoId,
+            });
+
+            return alunoTurma;
+        }
+
+        public async Task<IEnumerable<AlunoTurma>> GetByTurmaId(int turmaId)
+        {
+            using var connection = new SqlConnection(_connectionString);
+
+            await connection.OpenAsync();
+
+            var alunoTurma = await connection.QueryAsync<AlunoTurma>("SELECT TOP(1) * FROM [Aluno_Turma] WHERE [Turma_Id] = @TURMA_ID", new
+            {
+                @TURMA_ID = turmaId,
+            });
+
+            return alunoTurma;
         }
 
         public async Task DeleteAsync(int alunoId, int turmaId)

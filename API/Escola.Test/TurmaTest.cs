@@ -42,7 +42,7 @@ namespace Escola.Test
         public async Task AddAsync_ShouldAddTurma_WhenRequestIsValid()
         {
             var turmaRequest = new TurmaRequest { Nome = "Turma 1", CursoId = 1, Ano = DateTime.Now.Year };
-            var turma = new Turma { Id = 1, Nome = "Turma 1", CursoId = 1, Ano = DateTime.Now.Year };
+            var turma = new Turma { Nome = "Turma 1", CursoId = 1, Ano = DateTime.Now.Year };
 
             _turmaRepository.Setup(x => x.NomeExistsAsync(turmaRequest.Nome)).ReturnsAsync(false);
             _turmaRepository.Setup(x => x.AddAsync(It.IsAny<Turma>())).ReturnsAsync(turma);
@@ -90,8 +90,8 @@ namespace Escola.Test
         {
             var turmas = new List<Turma>
             {
-            new Turma { Id = 1, Nome = "Turma 1", CursoId = 1, Ano = DateTime.Now.Year },
-            new Turma { Id = 2, Nome = "Turma 2", CursoId = 2, Ano = DateTime.Now.Year }
+            new(){ Id = 1, Nome = "Turma 1", CursoId = 1, Ano = DateTime.Now.Year },
+            new(){ Id = 2, Nome = "Turma 2", CursoId = 2, Ano = DateTime.Now.Year }
             };
             _turmaRepository.Setup(x => x.GetAsync()).ReturnsAsync(turmas);
 
@@ -170,8 +170,8 @@ namespace Escola.Test
             int alunoId = 1;
             var turmas = new List<Turma>
             {
-            new Turma { Id = 1, Nome = "Turma 1", CursoId = 1, Ano = DateTime.Now.Year },
-            new Turma { Id = 2, Nome = "Turma 2", CursoId = 2, Ano = DateTime.Now.Year }
+            new(){ Id = 1, Nome = "Turma 1", CursoId = 1, Ano = DateTime.Now.Year },
+            new(){ Id = 2, Nome = "Turma 2", CursoId = 2, Ano = DateTime.Now.Year }
             };
             _turmaRepository.Setup(x => x.GetByAlunoIdAsync(alunoId)).ReturnsAsync(turmas);
 

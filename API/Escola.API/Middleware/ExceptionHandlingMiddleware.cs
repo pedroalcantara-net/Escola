@@ -33,7 +33,7 @@ namespace Escola.API.Middleware
                 PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
             };
 
-            var erroResponse = JsonSerializer.Serialize(new ErroResponse(erros), serializerOptions);
+            var erroResponse = JsonSerializer.Serialize(new ErroListResponse(erros), serializerOptions);
 
             await httpContext.Response.WriteAsync(erroResponse);
         }

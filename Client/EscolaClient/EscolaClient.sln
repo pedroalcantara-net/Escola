@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34902.65
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EscolaClient.Web", "EscolaClient.Web\EscolaClient.Web.csproj", "{9B4AD2F3-0ED0-4B62-A5E9-5F8B76F91E13}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 -UI", "1 -UI", "{07E9CDA6-2ACE-4B94-BFDA-48B04F7DF2E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{504BDAB5-8859-40F6-92BF-C61F173C8D38}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Domain", "3 - Domain", "{EFD1605C-6D83-4AE1-BD53-833C0E7A56F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Infrastructure", "4 - Infrastructure", "{B0240690-B6E1-45A9-AB6C-9CF5E5191D61}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EscolaClient.Domain", "EscolaClient.Domain\EscolaClient.Domain.csproj", "{9598AC3C-D776-4542-8CD7-34BB9853D43F}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EscolaClient.Infrastructure", "EscolaClient.Infrastructure\EscolaClient.Infrastructure.csproj", "{4BBF786D-CB5C-4208-B686-E459EE585DC0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EscolaClient.Application", "EscolaClient.Application\EscolaClient.Application.csproj", "{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9B4AD2F3-0ED0-4B62-A5E9-5F8B76F91E13}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B4AD2F3-0ED0-4B62-A5E9-5F8B76F91E13}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B4AD2F3-0ED0-4B62-A5E9-5F8B76F91E13}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B4AD2F3-0ED0-4B62-A5E9-5F8B76F91E13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9598AC3C-D776-4542-8CD7-34BB9853D43F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9598AC3C-D776-4542-8CD7-34BB9853D43F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9598AC3C-D776-4542-8CD7-34BB9853D43F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9598AC3C-D776-4542-8CD7-34BB9853D43F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BBF786D-CB5C-4208-B686-E459EE585DC0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BBF786D-CB5C-4208-B686-E459EE585DC0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BBF786D-CB5C-4208-B686-E459EE585DC0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BBF786D-CB5C-4208-B686-E459EE585DC0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9B4AD2F3-0ED0-4B62-A5E9-5F8B76F91E13} = {07E9CDA6-2ACE-4B94-BFDA-48B04F7DF2E1}
+		{9598AC3C-D776-4542-8CD7-34BB9853D43F} = {EFD1605C-6D83-4AE1-BD53-833C0E7A56F6}
+		{4BBF786D-CB5C-4208-B686-E459EE585DC0} = {B0240690-B6E1-45A9-AB6C-9CF5E5191D61}
+		{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681} = {504BDAB5-8859-40F6-92BF-C61F173C8D38}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A5057162-38FC-4005-8DEA-7A8F29D7F300}
+	EndGlobalSection
+EndGlobal

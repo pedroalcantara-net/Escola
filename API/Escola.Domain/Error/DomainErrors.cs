@@ -24,6 +24,15 @@
                 "A Senha e a Confirmação devem ser idênticas."
                 );
 
+            public static Erro SenhaUnsafe => new(
+                "Aluno.SenhaNotSafe",
+                "A Senha informada não cumpre os requisitos de segurança."
+                );
+
+            public static Erro HasTurma => new(
+                "Aluno.HasTurma",
+                "O Aluno está matriculado em uma ou mais turmas e não pode ser excluído."
+                );
         }
 
         public static class Turma
@@ -46,6 +55,11 @@
             public static Erro InvalidAno => new(
                 "Turma.InvalidAno",
                 "O ano informado é inferior à data atual."
+                );
+
+            public static Erro HasAluno => new(
+                "Aluno.HasTurma",
+                "A Turma possui um ou mais Alunos matriculados e não pode ser excluída."
                 );
         }
 

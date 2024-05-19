@@ -14,5 +14,10 @@
             public const string Id = "{id:int}";
             public const string Aluno = "{id:int}/aluno";
         }
+
+        public static class AlunoTurma
+        {
+            public const string Ids = "turma/{turmaId:int}/aluno/{alunoId:int}";
+        }
     }
 }

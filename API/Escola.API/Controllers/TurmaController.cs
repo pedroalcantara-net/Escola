@@ -16,25 +16,25 @@ namespace Escola.API.Controllers
 
         [HttpGet]
         [ProducesResponseType(typeof(IEnumerable<TurmaResponse>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(ErroResponse), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ErroListResponse), (int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<IEnumerable<TurmaResponse>>> Get()
             => Ok(await _turmaService.GetAsync());
 
         [HttpGet(ApiRoutes.Turma.Id)]
         [ProducesResponseType(typeof(IEnumerable<TurmaResponse>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(ErroResponse), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ErroListResponse), (int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<IEnumerable<TurmaResponse>>> GetById([FromRoute] int id)
             => Ok(await _turmaService.GetByIdAsync(id));
 
         [HttpGet(ApiRoutes.Turma.Aluno)]
         [ProducesResponseType(typeof(IEnumerable<AlunoResponse>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(ErroResponse), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ErroListResponse), (int)HttpStatusCode.NotFound)]
         public async Task<ActionResult<IEnumerable<AlunoResponse>>> GetTurmaById([FromServices] IAlunoService alunoService, [FromRoute] int id)
             => Ok(await alunoService.GetByTurmaIdAsync(id));
 
         [HttpPost]
         [ProducesResponseType(typeof(IEnumerable<TurmaResponse>), (int)HttpStatusCode.Created)]
-        [ProducesResponseType(typeof(ErroResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErroListResponse), (int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<TurmaResponse>> Add([FromBody] TurmaRequest turma)
         {
             var response = await _turmaService.AddAsync(turma);
@@ -43,14 +43,14 @@ namespace Escola.API.Controllers
 
         [HttpPut]
         [ProducesResponseType(typeof(IEnumerable<TurmaResponse>), (int)HttpStatusCode.OK)]
-        [ProducesResponseType(typeof(ErroResponse), (int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(ErroResponse), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(ErroListResponse), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ErroListResponse), (int)HttpStatusCode.BadRequest)]
         public async Task<ActionResult<TurmaResponse>> Update([FromBody] TurmaRequest turma)
             => Ok(await _turmaService.UpdateAsync(turma));
 
         [HttpDelete(ApiRoutes.Turma.Id)]
         [ProducesResponseType((int)HttpStatusCode.NoContent)]
-        [ProducesResponseType(typeof(ErroResponse), (int)HttpStatusCode.NotFound)]
+        [ProducesResponseType(typeof(ErroListResponse), (int)HttpStatusCode.NotFound)]
         public async Task<IActionResult> Delete([FromRoute] int id)
         {
             await _turmaService.DeleteByIdAsync(id);

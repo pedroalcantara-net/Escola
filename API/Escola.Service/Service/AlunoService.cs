@@ -8,9 +8,10 @@ using Escola.Domain.Interface.Repository;
 
 namespace Escola.Application.Service
 {
-    public class AlunoService(IAlunoRepository alunoRepository) : IAlunoService
+    public class AlunoService(IAlunoRepository alunoRepository, IAlunoTurmaRepository alunoTurmaRepository) : IAlunoService
     {
         private readonly IAlunoRepository _alunoRepository = alunoRepository;
+        private readonly IAlunoTurmaRepository _alunoTurmaRepository = alunoTurmaRepository;
 
         private readonly List<Erro> _erros = [];
 
@@ -19,6 +20,8 @@ namespace Escola.Application.Service
             if (await _alunoRepository.UsuarioExistsAsync(alunoRequest.Usuario)) _erros.Add(DomainErrors.Aluno.UsuarioExists);
 
             if (alunoRequest.Senha != alunoRequest.SenhaConfirmacao) _erros.Add(DomainErrors.Aluno.SenhaDoesNotMatch);
+
+            if (!Validation.PasswordIsValid(alunoRequest.Senha)) _erros.Add(DomainErrors.Aluno.SenhaUnsafe);
 
             if (_erros.Count != 0) throw new BadRequestException(_erros);
 
@@ -39,6 +42,9 @@ namespace Escola.Application.Service
         public async Task DeleteByIdAsync(int id)
         {
             _ = await _alunoRepository.GetByIdAsync(id) ?? throw new NotFoundException(DomainErrors.Aluno.NotFound);
+
+            var turmas = await _alunoTurmaRepository.GetByAlunoId(id);
+            if (turmas.Any()) throw new BadRequestException(DomainErrors.Aluno.HasTurma);
 
             await _alunoRepository.DeleteByIdAsync(id);
         }
@@ -61,9 +67,10 @@ namespace Escola.Application.Service
 
         public async Task<AlunoResponse> UpdateAsync(AlunoRequest alunoRequest)
         {
-            var aluno = await _alunoRepository.GetByIdAsync(alunoRequest.Id) ?? throw new NotFoundException(DomainErrors.Aluno.NotFound);
+            var aluno = await _alunoRepository.GetByIdAsync(alunoRequest.Id ?? 0) ?? throw new NotFoundException(DomainErrors.Aluno.NotFound);
 
             if (alunoRequest.Senha is not null && alunoRequest.Senha != alunoRequest.SenhaConfirmacao) _erros.Add(DomainErrors.Aluno.SenhaDoesNotMatch);
+            if (alunoRequest.Senha is not null && !Validation.PasswordIsValid(alunoRequest.Senha)) _erros.Add(DomainErrors.Aluno.SenhaUnsafe);
 
             if (_erros.Count != 0) throw new BadRequestException(_erros);
 
