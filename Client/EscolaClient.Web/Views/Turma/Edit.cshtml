@@ -13,8 +13,8 @@
             @Html.HiddenFor(x => x.Id)
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CursoId" class="control-label"></label>
-                <input asp-for="CursoId" class="form-control" />
+                <label asp-for="CursoId" class="control-label">Curso</label>
+                <input asp-for="CursoId" class="form-control" type="number" />
                 <span asp-validation-for="CursoId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -28,7 +28,7 @@
                 <span asp-validation-for="Ano" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Salvar" class="btn btn-primary" />
             </div>
         </form>
     </div>

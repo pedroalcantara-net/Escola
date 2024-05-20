@@ -12,8 +12,8 @@
             @Html.ValidationSummary()
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="CursoId" class="control-label"></label>
-                <input asp-for="CursoId" class="form-control" />
+                <label asp-for="CursoId" class="control-label">Curso</label>
+                <input asp-for="CursoId" class="form-control" type="number" />
                 <span asp-validation-for="CursoId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -23,11 +23,11 @@
             </div>
             <div class="form-group">
                 <label asp-for="Ano" class="control-label"></label>
-                <input asp-for="Ano" class="form-control" type="number"/>
+                <input asp-for="Ano" class="form-control" type="number" />
                 <span asp-validation-for="Ano" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Cadastrar" class="btn btn-primary" />
             </div>
         </form>
     </div>
