@@ -1,6 +1,5 @@
 ﻿using EscolaClient.Application.Interface.Service;
 using EscolaClient.Application.ViewModel;
-using EscolaClient.Domain.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EscolaClient.Web.Controllers

@@ -44,7 +44,7 @@
                     @Html.DisplayFor(modelItem => item.Ano)
                 </td>
                 <td>
-                    @Html.ActionLink("Gerenciar Matrículas", "Turma", new { Id = item.Id })
+                    @Html.ActionLink("Gerenciar Matrículas", "Turma", new { Id = item.Id }, new { @id = "manage" })
                 </td>
             </tr>
         }

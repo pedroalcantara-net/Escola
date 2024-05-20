@@ -35,9 +35,15 @@ Inicie o cliente
 
 ## Rodando os testes
 
-Para rodar os testes da API, rode o seguinte comando
+Para rodar os testes da API, execute o seguinte comando
 
 ```bash
   dotnet test API/Escola.Test/Escola.Test.csproj
+```
+
+Para rodar os testes do Client, rode o projeto localmente e execute o seguinte comando
+
+```bash
+  dotnet test Client/EscolaClient.Test
 ```
 

@@ -19,6 +19,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EscolaClient.Infrastructure
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EscolaClient.Application", "EscolaClient.Application\EscolaClient.Application.csproj", "{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - Tests", "5 - Tests", "{086D3EA8-1F5D-457B-B24D-940DBA648CFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EscolaClient.Test", "EscolaClient.Test\EscolaClient.Test.csproj", "{EDDCF815-7367-482D-B4D8-18BD5FF435C0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,10 @@ Global
 		{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EDDCF815-7367-482D-B4D8-18BD5FF435C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EDDCF815-7367-482D-B4D8-18BD5FF435C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EDDCF815-7367-482D-B4D8-18BD5FF435C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EDDCF815-7367-482D-B4D8-18BD5FF435C0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +58,7 @@ Global
 		{9598AC3C-D776-4542-8CD7-34BB9853D43F} = {EFD1605C-6D83-4AE1-BD53-833C0E7A56F6}
 		{4BBF786D-CB5C-4208-B686-E459EE585DC0} = {B0240690-B6E1-45A9-AB6C-9CF5E5191D61}
 		{9A4D1AE3-C2C0-41C1-8472-83E66A7FB681} = {504BDAB5-8859-40F6-92BF-C61F173C8D38}
+		{EDDCF815-7367-482D-B4D8-18BD5FF435C0} = {086D3EA8-1F5D-457B-B24D-940DBA648CFB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {A5057162-38FC-4005-8DEA-7A8F29D7F300}

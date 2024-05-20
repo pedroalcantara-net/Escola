@@ -38,7 +38,7 @@
                     @Html.DisplayFor(modelItem => item.Usuario)
                 </td>
                 <td>
-                    @Html.ActionLink("Excluir", "Delete", new { alunoId = item.Id, turmaId = Model.Turma?.Id })
+                    @Html.ActionLink("Excluir", "Delete", new { alunoId = item.Id, turmaId = Model.Turma?.Id }, new { @id = "delete" })
                 </td>
             </tr>
         }
