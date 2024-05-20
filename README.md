@@ -3,7 +3,7 @@
 
 Aplicação de gerenciamento de alunos e turmas em uma escola
 
-O projeto foi desenvolvido como parte de um teste, tendo foco na implementação de uma API em .NET, demonstrando competências como .NET 8, SQL Server, Dapper, Razor Pages.
+O projeto foi desenvolvido como parte de um teste, tendo foco na implementação de uma API em .NET, demonstrando competências como .NET 8, SQL Server, Dapper, Razor Pages, xUnit, Selenium.
 
 
 ## Instalação
